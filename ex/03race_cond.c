@@ -4,7 +4,10 @@
 
 // add arg: -pthread with gcc
 
-//UNIX THREADS in C video 1 - 3 intro, difference process & thread, race condition
+/*
+UNIX THREADS in C video 1 - 5 intro, difference process & thread, race condition,
+pthread_mutex, create threads in a loop
+*/
 /*
 	Differences between processes and threads:
 	processes can have multiple threads with the same pid
@@ -14,24 +17,52 @@
 */
 
 int mails = 0;
+pthread_mutex_t mutex;
 
-void	*routine() {
-	mails++;
+void* routine() 
+{
+	for (int i = 0; i < 1000000; i++)
+	{
+		pthread_mutex_lock(&mutex);
+		mails++;
+		//read, increment, write
+		pthread_mutex_unlock(&mutex);
+	}
+	return (NULL);
 }
 
 int main(int argc, char **argv)
 {
-	pthread_t p1, p2;
+	pthread_mutex_init(&mutex, NULL);
+	// NULL = customization
+	pthread_t p[3];
 
+	for (int i = 0; i < 3; i++){
+		if (pthread_create(&p[i], NULL, &routine, NULL) != 0)
+		{
+			perror("Failed to create thread");
+			return 2;
+		}
+		printf("Thread %d has started\n", i);
+	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (pthread_join(p[i], NULL) != 0)
+			return 3;
+		printf("Thread %d has finished\n", i);
+	}
+	/*
 	if (pthread_create(&p1, NULL, &routine, NULL) != 0)
-	// pointer to pthread var, customiztion, pointer to func, argum to func (none here) 
+	// pointer to pthread var, customization, pointer to func, argum to func (none here) 
 		return 1;
 	if (pthread_create(&p2, NULL, &routine, NULL) != 0) 
-		return 2;
-	if (pthread_join(p1, NULL) != 0)
-		return 3;
-	// wait the thread, pthread var, pointer to get the return of function, (here none)
+		return 2;+
 	if (pthread_join(p2, NULL) != 0)
+	// wait the thread, pthread var, pointer to get the return of function, (here none)
 		return 4;
+	*/
+	pthread_mutex_destroy(&mutex);
+	printf("Number of mails: %d\n", mails);
 }
 
