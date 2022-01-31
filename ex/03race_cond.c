@@ -36,7 +36,7 @@ int main(int argc, char **argv)
 	pthread_mutex_init(&mutex, NULL);
 	// NULL = customization
 	pthread_t p[3];
-
+	
 	for (int i = 0; i < 3; i++){
 		if (pthread_create(&p[i], NULL, &routine, NULL) != 0)
 		{
@@ -45,23 +45,12 @@ int main(int argc, char **argv)
 		}
 		printf("Thread %d has started\n", i);
 	}
-
 	for (int i = 0; i < 3; i++)
 	{
 		if (pthread_join(p[i], NULL) != 0)
 			return 3;
 		printf("Thread %d has finished\n", i);
 	}
-	/*
-	if (pthread_create(&p1, NULL, &routine, NULL) != 0)
-	// pointer to pthread var, customization, pointer to func, argum to func (none here) 
-		return 1;
-	if (pthread_create(&p2, NULL, &routine, NULL) != 0) 
-		return 2;+
-	if (pthread_join(p2, NULL) != 0)
-	// wait the thread, pthread var, pointer to get the return of function, (here none)
-		return 4;
-	*/
 	pthread_mutex_destroy(&mutex);
 	printf("Number of mails: %d\n", mails);
 }
