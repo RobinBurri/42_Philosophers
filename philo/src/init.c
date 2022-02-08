@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 10:49:50 by rburri            #+#    #+#             */
-/*   Updated: 2022/02/08 12:00:50 by rburri           ###   ########.fr       */
+/*   Created: 2022/02/08 11:44:47 by rburri            #+#    #+#             */
+/*   Updated: 2022/02/08 12:01:12 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int	main(int argc, char **argv)
+void	init(t_data *data, int argc, char **argv)
 {
-	if (argc < 5 || argc > 6)
-		return (err_msg(ARG_ERR));
-	return (0);
+	data->number_of_philos
 }
