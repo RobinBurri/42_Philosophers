@@ -6,13 +6,13 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:24:51 by rburri            #+#    #+#             */
-/*   Updated: 2022/02/08 12:00:41 by rburri           ###   ########.fr       */
+/*   Updated: 2022/02/09 18:11:36 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int	strlen(char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
@@ -27,8 +27,8 @@ int	strlen(char *s)
 int	err_msg(char *s)
 {
 	if (s)
-		write(1, s, strlen(s));
-	return (1);
+		write(1, s, ft_strlen(s));
+	return (ERR);
 }
 
 int	ft_atoi(char *s)
@@ -54,4 +54,12 @@ int	ft_atoi(char *s)
 	while (s[i] >= '0' && s[i] <= '9')
 		res = (res * 10) + (s[i++] - '0');
 	return (res * sign);
+}
+
+uint64_t	get_time(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }

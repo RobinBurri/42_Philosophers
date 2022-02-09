@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:22:59 by rburri            #+#    #+#             */
-/*   Updated: 2022/02/08 11:59:49 by rburri           ###   ########.fr       */
+/*   Updated: 2022/02/09 18:13:25 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+# define OK 0
+# define ERR 1
+
 # define ARG_ERR "Error: bad arguments\n"
+# define NUM_ERR "Error: some args are not numbers\n"
 
 typedef struct s_data
 {
@@ -32,8 +36,12 @@ typedef struct s_data
 	int			time_must_eat;
 }				t_data;
 
+int			init(t_data *data, int argc, char **argv);
+
 //UTILS
-int	err_msg(char *s);
-int	strlen(char *s);
+uint64_t	get_time(void);
+int			err_msg(char *s);
+int			ft_strlen(char *s);
+int			ft_atoi(char *s);
 
 #endif
