@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:49:50 by rburri            #+#    #+#             */
-/*   Updated: 2022/02/09 11:29:01 by rburri           ###   ########.fr       */
+/*   Updated: 2022/02/10 09:30:27 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void *eat(void *arg)
 int	main(int argc, char **argv)
 {
 	t_data data;
-	init(&data, argc, argv);
+	parse_args_init(&data, argc, argv);
 	// pthread_mutex_t fork_mutex[data.number_of_philos];
 	// pthread_t philos[data.number_of_philos];
 	// for (int i = 0; i < data.number_of_philos; i++)

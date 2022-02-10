@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:22:59 by rburri            #+#    #+#             */
-/*   Updated: 2022/02/09 18:13:25 by rburri           ###   ########.fr       */
+/*   Updated: 2022/02/10 09:30:44 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_data
 	int			time_must_eat;
 }				t_data;
 
-int			init(t_data *data, int argc, char **argv);
+int			parse_args_init(t_data *data, int argc, char **argv);
 
 //UTILS
 uint64_t	get_time(void);

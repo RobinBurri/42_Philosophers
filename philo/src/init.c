@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:44:47 by rburri            #+#    #+#             */
-/*   Updated: 2022/02/09 18:12:02 by rburri           ###   ########.fr       */
+/*   Updated: 2022/02/10 09:30:38 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	check_entries(int argc, char **argv)
 	return (OK);
 }
 
-int	init(t_data *data, int argc, char **argv)
+int	parse_args_init(t_data *data, int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
 		return (err_msg(ARG_ERR));
