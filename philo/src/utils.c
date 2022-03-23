@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:24:51 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/23 07:58:51 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/23 08:47:27 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	ft_atoi(char *s)
 	return (res * sign);
 }
 
-uint64_t	get_time(void)
+// return value in millisecondes
+int	get_time(void)
 {
 	struct timeval	tv;
 

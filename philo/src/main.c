@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:49:50 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/23 07:58:47 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/23 09:28:57 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void *eat(void *arg)
 {
 	int index;
-	uint64_t time;
+	int time;
 	index = *(int *)arg;
 	time = get_time();
-	printf("philos no: %d, time: %lld\n", index, time);
+	printf("philos no: %d, time: %d\n", index, time);
 	free(arg);
 	return (NULL);
 }
