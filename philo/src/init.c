@@ -6,11 +6,11 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:44:47 by rburri            #+#    #+#             */
-/*   Updated: 2022/02/10 09:30:38 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/23 07:58:39 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../include/philo.h"
 
 static int	check_if_is_num(char *argv)
 {

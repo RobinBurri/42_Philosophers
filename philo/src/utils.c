@@ -6,11 +6,11 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:24:51 by rburri            #+#    #+#             */
-/*   Updated: 2022/02/09 18:11:36 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/23 07:58:51 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../include/philo.h"
 
 int	ft_strlen(char *s)
 {
