@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:22:59 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/23 09:31:32 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/24 10:53:47 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,36 @@
 # define OK 0
 # define ERR 1
 
-# define ARG_ERR "Error: bad arguments\n"
+# define ARG_ERR "Error: numbers of arguments\nUsage: ./philo num_of_philo \
+time_to_die time_to_eat time_to_sleep [time_must_eat]\n"
 # define NUM_ERR "Error: some args are not numbers\n"
+# define MAL_ERR "Error, malloc failed\n"
+
+typedef struct s_philo
+{
+	int				philo_num;
+	int				num_of_meal;
+	long long		time_last_meal;
+	pthread_mutex_t	*left;
+	pthread_mutex_t	*right;
+}					t_philo;
 
 typedef struct s_data
 {
-	int			number_of_philos;
-	int			time_to_die;
-	int			time_to_eat;
-	int			time_to_sleep;
-	int			time_must_eat;
+	int				number_of_philos;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				time_must_eat;
+	long long		time_of_creation;
+	t_philo			*philos;
+	pthread_mutex_t	*forks;
 }				t_data;
 
 int			parse_args_init(t_data *data, int argc, char **argv);
 
 //UTILS
-int			get_time(void);
+long long	get_time(void);
 int			err_msg(char *s);
 int			ft_strlen(char *s);
 int			ft_atoi(char *s);
@@ -63,11 +77,10 @@ time to sleep
 (time must eat)
 */
 
-
 /*
 TODO
 
 - MAKE function to print output with time stamp
 - initialize required number of philo, set arguments correctly to them
-- 
+- How a philo knows when he can try to take forks?
 */

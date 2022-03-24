@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:24:51 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/23 08:47:27 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/24 10:54:13 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,19 @@ int	ft_atoi(char *s)
 }
 
 // return value in millisecondes
-int	get_time(void)
+long long	get_time(void)
 {
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
+
+// void	print_philo_msg(t_data *philo, char *str)
+// {
+// 	long long	time;
+// 	long long	now;
+// 	now = get_time();
+// 	time = now - philo->time_of_creation;
+// 	printf("%lld\n", time);
+// }
