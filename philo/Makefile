@@ -6,7 +6,7 @@
 #    By: rburri <rburri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/08 10:48:44 by rburri            #+#    #+#              #
-#    Updated: 2022/02/09 09:39:03 by rburri           ###   ########.fr        #
+#    Updated: 2022/03/24 11:34:45 by rburri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ $(shell mkdir -p $(BIN))
 SOURCE =  	$(SRC)/main.c\
 			$(SRC)/utils.c\
 			$(SRC)/init.c\
+			$(SRC)/activities.c\
 			
 		
 		

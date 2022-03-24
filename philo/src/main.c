@@ -6,21 +6,23 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:49:50 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/24 09:40:52 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/24 11:29:43 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void *eat(void *arg)
+static void	philos_creation(t_data *data)
 {
-	int index;
-	int time;
-	index = *(int *)arg;
-	time = get_time();
-	printf("philos no: %d, time: %d\n", index, time);
-	free(arg);
-	return (NULL);
+	int	i;
+	
+	i = 0;
+	data->time_of_creation = get_time();
+	while (i < data->number_of_philos)
+	{
+		data->philos[i].time_last_meal = data->time_of_creation;
+		pthread_create(&data->philos->life, NULL, activities, &data->philos[i]);
+	}
 }
 
 int	main(int argc, char **argv)
@@ -30,7 +32,7 @@ int	main(int argc, char **argv)
 	memset(&data, 0, sizeof(data));
 	if (parse_args_init(&data, argc, argv))
 		return (1);
-	if (init_philos(data))
+	if (init_philos(&data))
 		return (1);
 	// Create philos
 	// free philos
