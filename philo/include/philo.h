@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:22:59 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/24 11:43:57 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/25 08:17:41 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ typedef struct s_philo
 	int				philo_num;
 	int				num_of_meal;
 	long long		time_last_meal;
-	pthread_mutex_t	*left;
-	pthread_mutex_t	*right;
+	pthread_mutex_t	*fork_left;
+	pthread_mutex_t	*fork_right;
 	pthread_t		life;
-	struct s_info	*data;
+	struct s_data	*data;
 }					t_philo;
 
 typedef struct s_data
@@ -47,12 +47,10 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				time_must_eat;
-	// init in parse_args_init
+	int				end;
 	long long		time_of_creation;
-	//??
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
-	// init_philos
 }				t_data;
 void	*activities(void *philo);
 
@@ -65,7 +63,7 @@ long long	get_time(void);
 int			err_msg(char *s);
 int			ft_strlen(char *s);
 int			ft_atoi(char *s);
-void		print_msg(t_data *philo, char *str);
+void		print_msg(t_philo *philo, char *str);
 
 #endif
 
@@ -93,3 +91,9 @@ TODO
 - initialize required number of philo, set arguments correctly to them
 - How a philo knows when he can try to take forks?
 */
+
+
+// mutex_init
+// mutex_destroy
+// mutex_lock
+// mutex_unlock

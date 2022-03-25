@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:24:51 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/24 11:08:45 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/25 07:27:25 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ long long	get_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-void	print_msg(t_data *philo, char *str)
+void	print_msg(t_philo *philo, char *str)
 {
 	long long	time;
 	long long	now;
 	now = get_time();
-	time = now - philo->time_of_creation;
-	printf("%lld\n", time);
+	time = now - philo->data->time_of_creation;
+	printf("%lld %d %s\n", time, philo->philo_num, str);
 }

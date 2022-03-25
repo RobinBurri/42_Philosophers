@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:44:47 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/24 10:51:42 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/25 07:32:44 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	parse_args_init(t_data *data, int argc, char **argv)
 		data->time_must_eat = ft_atoi(argv[5]);
 	else
 		data->time_must_eat = -1;
+	data->end = 0;
 	return (OK);
 }
 
@@ -73,10 +74,10 @@ int	init_philos(t_data *data)
 		data->philos[i].philo_num = i;
 		pthread_mutex_init(&data->forks[i], NULL);
 		if (i == 0)
-			data->philos[i].left = &data->forks[data->number_of_philos - 1];
+			data->philos[i].fork_left = &data->forks[data->number_of_philos - 1];
 		else
-			data->philos[i].left = &data->forks[i - 1];
-		data->philos[i].right = &data->forks[i];
+			data->philos[i].fork_left = &data->forks[i - 1];
+		data->philos[i].fork_right = &data->forks[i];
 		i++;
 	}
 	return (OK);
