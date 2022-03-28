@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 10:58:23 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/25 07:34:54 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/28 09:36:17 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	think(t_philo *philo)
 	print_msg(philo, "is thinking");
 }
 
-static void	sleep(t_philo *philo)
+static void	ft_sleep(t_philo *philo)
 {
 	print_msg(philo, "is sleeping");
 	usleep(philo->data->time_to_sleep * 1000);
@@ -33,7 +33,22 @@ static void	take_fork(t_philo *philo)
 
 static void	eat(t_philo *philo)
 {
-	print_msg(philo, "is eating");
+	
+	pthread_mutex_lock(&philo->check_philo);
+	pthread_mutex_lock(&philo->data->check_die);
+	if (!philo->data->die)
+	{
+		philo->time_last_meal = get_time();
+		print_msg(philo, "is eating");
+	}
+	philo->num_of_meal += 1;
+	// if (philo->num_of_meal == philo->data->time_must_eat)
+	// 	philo->ate_enough = 1;
+	pthread_mutex_unlock(&philo->data->check_die);
+	usleep(philo->data->time_to_eat * 1000);
+	pthread_mutex_unlock(philo->fork_right);
+	pthread_mutex_unlock(philo->fork_left);
+	pthread_mutex_unlock(&philo->check_philo);
 }
 
 void	*activities(void *arg)
@@ -43,11 +58,11 @@ void	*activities(void *arg)
 	philo = (t_philo*)arg;
 	if (philo->philo_num % 2 == 0)
 		usleep(philo->data->time_to_eat * 1000);
-	while (!philo->data->end)
+	while (!philo->data->die)
 	{
 		take_fork(philo);
 		eat(philo);
-		sleep(philo);
+		ft_sleep(philo);
 		think(philo);
 	}
 	return (NULL);

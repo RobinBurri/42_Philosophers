@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:49:50 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/25 07:18:01 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/28 09:29:22 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	philos_creation(t_data *data)
 	{
 		data->philos[i].time_last_meal = data->time_of_creation;
 		pthread_create(&data->philos->life, NULL, activities, &data->philos[i]);
-		// pthread_create(&supervisor, NULL, supervise, &data->philos[i]);
+		pthread_create(&supervisor, NULL, supervise, &data->philos[i]);
 		pthread_detach(supervisor);
 		i++;
 	}
@@ -37,7 +37,7 @@ static void	philos_join_free(t_data *data)
 	while (i < data->number_of_philos)
 	{
 		pthread_join(data->philos[i].life, NULL);
-		// pthread_mutex_destroy(&data->philos[i++].check_mutex);
+		pthread_mutex_destroy(&data->philos[i++].check_philo);
 	}
 	free(data->philos);
 	i = 0;
@@ -57,11 +57,11 @@ int	main(int argc, char **argv)
 		return (1);
 	philos_creation(&data);
 	philos_join_free(&data);
-	printf("num philos: %d\n", data.number_of_philos);
-	printf("time to die: %d\n", data.time_to_die);
-	printf("time to eat: %d\n", data.time_to_eat);
-	printf("time to sleep: %d\n", data.time_to_sleep);
-	printf("must eat: %d\n", data.time_must_eat);
+	// printf("num philos: %d\n", data.number_of_philos);
+	// printf("time to die: %d\n", data.time_to_die);
+	// printf("time to eat: %d\n", data.time_to_eat);
+	// printf("time to sleep: %d\n", data.time_to_sleep);
+	// printf("must eat: %d\n", data.time_must_eat);
 	
 	return (OK);
 }

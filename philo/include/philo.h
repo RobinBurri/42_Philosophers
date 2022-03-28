@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:22:59 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/25 08:17:41 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/28 09:35:25 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,31 @@ time_to_die time_to_eat time_to_sleep [time_must_eat]\n"
 
 typedef struct s_philo
 {
+	struct s_data	*data;
+	pthread_mutex_t	*fork_left; // init_philos
+	pthread_mutex_t	*fork_right; // int_philos
+	pthread_mutex_t	check_philo;
 	int				philo_num;
 	int				num_of_meal;
 	long long		time_last_meal;
-	pthread_mutex_t	*fork_left;
-	pthread_mutex_t	*fork_right;
-	pthread_t		life;
-	struct s_data	*data;
+	pthread_t		life; // pthread_create in philos_creation (main)
 }					t_philo;
 
 typedef struct s_data
 {
+	pthread_mutex_t	*forks; //init_philos + malloc_ed
+	t_philo			*philos; //malloc_ed 
 	int				number_of_philos;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				time_must_eat;
-	int				end;
 	long long		time_of_creation;
-	t_philo			*philos;
-	pthread_mutex_t	*forks;
+	int				die;
+	pthread_mutex_t	check_die;
 }				t_data;
 void	*activities(void *philo);
+void	*supervise(void *arg);
 
 // INIT
 int			parse_args_init(t_data *data, int argc, char **argv);
@@ -90,6 +93,7 @@ TODO
 - MAKE function to print output with time stamp
 - initialize required number of philo, set arguments correctly to them
 - How a philo knows when he can try to take forks?
+- malloc everything with 0
 */
 
 
