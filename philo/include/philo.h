@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:22:59 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/28 09:35:25 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/28 10:21:10 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,7 @@ time to sleep
 /*
 TODO
 
-- MAKE function to print output with time stamp
-- initialize required number of philo, set arguments correctly to them
 - How a philo knows when he can try to take forks?
-- malloc everything with 0
 */
 
 

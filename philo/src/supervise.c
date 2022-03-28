@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 07:40:05 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/28 09:10:16 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/28 10:16:46 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void *supervise(void *arg)
 		diff = now - philo->time_last_meal;
 		if (diff >= philo->data->time_to_die && philo->data->die == 0)
 		{
-			printf("%lld %d died\n", now, philo->philo_num);
+			printf("%lld %d died\n", now - philo->data->time_of_creation, philo->philo_num);
 			philo->data->die = 1;	
 		}
 		pthread_mutex_unlock(&philo->data->check_die);

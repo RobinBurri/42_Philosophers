@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:49:50 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/28 09:29:22 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/28 10:12:59 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,6 @@ int	main(int argc, char **argv)
 	if (init_philos(&data))
 		return (1);
 	philos_creation(&data);
-	philos_join_free(&data);
-	// printf("num philos: %d\n", data.number_of_philos);
-	// printf("time to die: %d\n", data.time_to_die);
-	// printf("time to eat: %d\n", data.time_to_eat);
-	// printf("time to sleep: %d\n", data.time_to_sleep);
-	// printf("must eat: %d\n", data.time_must_eat);
-	
+	philos_join_free(&data);	
 	return (OK);
 }

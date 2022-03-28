@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:44:47 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/28 07:50:47 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/28 10:02:34 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	parse_args_init(t_data *data, int argc, char **argv)
 		data->time_must_eat = ft_atoi(argv[5]);
 	else
 		data->time_must_eat = -1;
-	data->die = 0;
 	return (OK);
 }
 
@@ -63,6 +62,7 @@ int	init_philos(t_data *data)
 	int	i;
 
 	i = 0;
+	pthread_mutex_init(&data->check_die, NULL);
 	data->philos = malloc(sizeof(t_philo) * data->number_of_philos);
 	if (data->philos == 0)
 		return (err_msg(MAL_ERR));
@@ -73,11 +73,13 @@ int	init_philos(t_data *data)
 	{
 		data->philos[i].philo_num = i;
 		pthread_mutex_init(&data->forks[i], NULL);
+		pthread_mutex_init(&data->philos[i].check_philo, NULL);
 		if (i == 0)
 			data->philos[i].fork_left = &data->forks[data->number_of_philos - 1];
 		else
 			data->philos[i].fork_left = &data->forks[i - 1];
 		data->philos[i].fork_right = &data->forks[i];
+		data->philos[i].data = data;
 		i++;
 	}
 	return (OK);
