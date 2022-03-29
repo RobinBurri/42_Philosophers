@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:24:51 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/25 07:27:25 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/29 08:58:18 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	err_msg(char *s)
 {
 	if (s)
 		write(1, s, ft_strlen(s));
-	return (ERR);
+	return (1);
 }
 
 int	ft_atoi(char *s)
@@ -69,7 +69,8 @@ void	print_msg(t_philo *philo, char *str)
 {
 	long long	time;
 	long long	now;
+
 	now = get_time();
 	time = now - philo->data->time_of_creation;
-	printf("%lld %d %s\n", time, philo->philo_num, str);
+	printf("%lld\t %d\t %s\n", time, philo->philo_num, str);
 }
