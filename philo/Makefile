@@ -22,23 +22,18 @@ FLAGS = -Wall -Wextra -Werror -g3
 
 LIB = -lpthread
 
-SRC = src
 
-BIN = bin
-
-$(shell mkdir -p $(BIN))
-
-SOURCE =  	$(SRC)/main.c\
-			$(SRC)/utils.c\
-			$(SRC)/init.c\
-			$(SRC)/activities.c\
-			$(SRC)/supervise.c\
+SOURCE =  	main.c\
+			utils.c\
+			init.c\
+			activities.c\
+			supervise.c\
 			
 		
 		
-OBJS = $(patsubst %,$(BIN)/%,$(notdir $(SOURCE:.c=.o)))
+OBJS = $(SOURCE:.c=.o)
 
-$(BIN)/%.o : $(SRC)/%.c
+%.o : %.c
 				$(CC) $(FLAGS) -c $< -o $@
 
 all: $(NAME)

@@ -24,6 +24,7 @@
 # define ARG_ERR "Error: numbers of arguments\nUsage: ./philo num_of_philo \
 time_to_die time_to_eat time_to_sleep [time_must_eat]\n"
 # define NUM_ERR "Error: some args are not numbers\n"
+# define PHILO_ERR "Number of Philosophers incorrect\n"
 # define MAL_ERR "Error, malloc failed\n"
 
 typedef struct s_philo
