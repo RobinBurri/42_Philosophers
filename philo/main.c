@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:49:50 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/29 08:54:08 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/30 16:07:11 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	philos_creation(t_data *data)
 	}
 }
 
-static void	philos_join_free(t_data *data)
+static void	philos_join(t_data *data)
 {
 	int	i;
 
@@ -42,7 +42,7 @@ static void	philos_join_free(t_data *data)
 	while (i < data->number_of_philos)
 	{
 		pthread_join(data->philos[i].life, NULL);
-		pthread_mutex_destroy(&data->philos[i++].check_philo);
+		pthread_mutex_destroy(&data->philos[i++].check_meals);
 	}
 	i = 0;
 	while (i < data->number_of_philos)
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 	if (parse_args_init(&data, argc, argv))
 		return (1);
 	philos_creation(&data);
-	philos_join_free(&data);
+	philos_join(&data);
 	return (0);
 }
 

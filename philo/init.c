@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:44:47 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/29 08:53:00 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/30 18:30:52 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	init_philos_forks(t_data *data)
 	while (i < data->number_of_philos)
 	{
 		data->philos[i].philo_id = i;
+		data->philos[i].num_of_meal = 0;
 		if (i == 0)
 			data->philos[i].fork_left = \
 				&data->forks[data->number_of_philos - 1];
@@ -75,11 +76,13 @@ int	parse_args_init(t_data *data, int argc, char **argv)
 	if (argc == 6)
 	{
 		data->time_must_eat = ft_atoi(argv[5]);
+		data->all_have_eaten = 0;
 		if (data->time_must_eat <= 0)
-		return (err_msg(MEAL_ERR));
+			return (err_msg(MEAL_ERR));
 	}
 	else
 		data->time_must_eat = - 1;
+		data->all_have_eaten = - 1;
 	init_philos_forks(data);
 	return (0);
 }
@@ -93,7 +96,7 @@ int	init_mutex(t_data *data)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL))
 			return (err_msg(MUTEX_ERR));
-		if (pthread_mutex_init(&data->philos[i].check_philo, NULL))
+		if (pthread_mutex_init(&data->philos[i].check_meals, NULL))
 			return (err_msg(MUTEX_ERR));
 		i++;
 	}
@@ -101,4 +104,3 @@ int	init_mutex(t_data *data)
 			return (err_msg(MUTEX_ERR));
 		return (0);
 }
-

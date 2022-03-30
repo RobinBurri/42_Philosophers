@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:22:59 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/29 09:00:58 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/30 18:48:57 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ time_to_die time_to_eat time_to_sleep [time_must_eat]\n"
 
 typedef struct s_philo
 {
-	pthread_mutex_t	*fork_left; // init_philos
-	pthread_mutex_t	*fork_right; // int_philos
-	pthread_mutex_t	check_philo;
+	pthread_mutex_t	*fork_left;
+	pthread_mutex_t	*fork_right;
+	pthread_mutex_t	check_meals;
 	int				philo_id;
-	pthread_t		life; // pthread_create in philos_creation (main)
+	pthread_t		life;
 	int				num_of_meal;
 	long long		time_last_meal;
 	struct s_data	*data;
@@ -44,7 +44,7 @@ typedef struct s_data
 {
 	pthread_mutex_t	forks[250];
 	t_philo			philos[250];
-	pthread_mutex_t	check_if_dead; // 1 in init_philos
+	pthread_mutex_t	check_if_dead;
 	int				number_of_philos;
 	int				time_to_die;
 	int				time_to_eat;
@@ -53,6 +53,7 @@ typedef struct s_data
 	int				die;
 	int				time_must_eat;
 	int				finish_eaten;
+	int				all_have_eaten;
 }				t_data;
 
 //UTILS
@@ -92,6 +93,7 @@ time to sleep
 TODO
 - Die return ? especially when only  one philo
 - How a philo knows when he can try to take forks?
+-forks not ok, how init them?
 */
 
 // mutex_init

@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 07:40:05 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/29 08:57:46 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/30 17:48:04 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ void	*supervise_num_of_meal(void *arg)
 	data = (t_data *)arg;
 	while (!data->die)
 	{
-		pthread_mutex_lock(&data->check_if_dead);
 		if (data->finish_eaten == data->number_of_philos)
-			data->die = 1;
-		pthread_mutex_unlock(&data->check_if_dead);
+			data->all_have_eaten = 1;
+		usleep(500);
 	}
 	return (NULL);
 }
@@ -36,16 +35,16 @@ void	*supervise(void *arg)
 	philo = (t_philo *)arg;
 	while (!philo->data->die)
 	{
-		pthread_mutex_lock(&philo->data->check_if_dead);
 		now = get_time();
 		diff = now - philo->time_last_meal;
 		if (diff >= philo->data->time_to_die && philo->data->die == 0)
 		{
+			pthread_mutex_lock(&philo->data->check_if_dead);
 			printf("%lld\t %d\t died\n", now - philo->data->time_of_creation, \
 				philo->philo_id);
 			philo->data->die = 1;
+			pthread_mutex_unlock(&philo->data->check_if_dead);
 		}
-		pthread_mutex_unlock(&philo->data->check_if_dead);
 	}
 	return (NULL);
 }
