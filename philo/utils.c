@@ -72,5 +72,5 @@ void	print_msg(t_philo *philo, char *str)
 
 	now = get_time();
 	time = now - philo->data->time_of_creation;
-	printf("%lld\t %d\t %s\n", time, philo->philo_num, str);
+	printf("%lld\t %d\t %s\n", time, philo->philo_id, str);
 }

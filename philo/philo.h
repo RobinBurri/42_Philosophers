@@ -24,32 +24,33 @@
 # define ARG_ERR "Error: numbers of arguments\nUsage: ./philo num_of_philo \
 time_to_die time_to_eat time_to_sleep [time_must_eat]\n"
 # define NUM_ERR "Error: some args are not numbers\n"
-# define PHILO_ERR "Number of Philosophers incorrect\n"
-# define MAL_ERR "Error, malloc failed\n"
+# define PHILO_ERR "Some args are incorrect: only positive numbers and max philosopher = 250\n"
+# define MEAL_ERR "Number of Meals must be > 0\n"
+# define MUTEX_ERR "Error init mutex\n"
 
 typedef struct s_philo
 {
-	struct s_data	*data;
 	pthread_mutex_t	*fork_left; // init_philos
 	pthread_mutex_t	*fork_right; // int_philos
 	pthread_mutex_t	check_philo;
-	int				philo_num;
+	int				philo_id;
+	pthread_t		life; // pthread_create in philos_creation (main)
 	int				num_of_meal;
 	long long		time_last_meal;
-	pthread_t		life; // pthread_create in philos_creation (main)
-}					t_philo;
+	struct s_data	*data;
+}				t_philo;
 
 typedef struct s_data
 {
-	pthread_mutex_t	*forks; //init_philos + malloc_ed
-	t_philo			*philos; //malloc_ed 
+	pthread_mutex_t	forks[250];
+	t_philo			philos[250];
+	pthread_mutex_t	check_if_dead; // 1 in init_philos
 	int				number_of_philos;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	long long		time_of_creation;
 	int				die;
-	pthread_mutex_t	check_die;
 	int				time_must_eat;
 	int				finish_eaten;
 }				t_data;
@@ -62,7 +63,7 @@ int			ft_atoi(char *s);
 void		print_msg(t_philo *philo, char *str);
 // INIT
 int			parse_args_init(t_data *data, int argc, char **argv);
-int			init_philos(t_data *data);
+int			init_mutex(t_data *data);
 //Threads function
 void		*activities(void *philo);
 void		*supervise(void *arg);

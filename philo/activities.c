@@ -34,7 +34,7 @@ static void	take_fork(t_philo *philo)
 static void	eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->check_philo);
-	pthread_mutex_lock(&philo->data->check_die);
+	pthread_mutex_lock(&philo->data->check_if_dead);
 	if (!philo->data->die)
 	{
 		philo->time_last_meal = get_time();
@@ -43,7 +43,7 @@ static void	eat(t_philo *philo)
 	philo->num_of_meal += 1;
 	if (philo->num_of_meal == philo->data->time_must_eat)
 		philo->data->finish_eaten += 1;
-	pthread_mutex_unlock(&philo->data->check_die);
+	pthread_mutex_unlock(&philo->data->check_if_dead);
 	usleep(philo->data->time_to_eat * 1000);
 	pthread_mutex_unlock(philo->fork_right);
 	pthread_mutex_unlock(philo->fork_left);
@@ -55,7 +55,7 @@ void	*activities(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	if (philo->philo_num % 2 == 0)
+	if (philo->philo_id % 2 == 0)
 		usleep(philo->data->time_to_eat * 1000);
 	while (!philo->data->die)
 	{

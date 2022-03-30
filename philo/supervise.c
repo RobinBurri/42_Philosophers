@@ -19,10 +19,10 @@ void	*supervise_num_of_meal(void *arg)
 	data = (t_data *)arg;
 	while (!data->die)
 	{
-		pthread_mutex_lock(&data->check_die);
+		pthread_mutex_lock(&data->check_if_dead);
 		if (data->finish_eaten == data->number_of_philos)
 			data->die = 1;
-		pthread_mutex_unlock(&data->check_die);
+		pthread_mutex_unlock(&data->check_if_dead);
 	}
 	return (NULL);
 }
@@ -36,16 +36,16 @@ void	*supervise(void *arg)
 	philo = (t_philo *)arg;
 	while (!philo->data->die)
 	{
-		pthread_mutex_lock(&philo->data->check_die);
+		pthread_mutex_lock(&philo->data->check_if_dead);
 		now = get_time();
 		diff = now - philo->time_last_meal;
 		if (diff >= philo->data->time_to_die && philo->data->die == 0)
 		{
 			printf("%lld\t %d\t died\n", now - philo->data->time_of_creation, \
-				philo->philo_num);
+				philo->philo_id);
 			philo->data->die = 1;
 		}
-		pthread_mutex_unlock(&philo->data->check_die);
+		pthread_mutex_unlock(&philo->data->check_if_dead);
 	}
 	return (NULL);
 }

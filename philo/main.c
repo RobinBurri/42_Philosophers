@@ -22,12 +22,12 @@ static void	philos_creation(t_data *data)
 	while (i < data->number_of_philos)
 	{
 		data->philos[i].time_last_meal = data->time_of_creation;
-		pthread_create(&data->philos->life, NULL, activities, &data->philos[i]);
+		pthread_create(&data->philos[i].life, NULL, activities, &data->philos[i]);
 		pthread_create(&supervisor, NULL, supervise, &data->philos[i]);
 		pthread_detach(supervisor);
 		i++;
 	}
-	if (data->time_must_eat != 0)
+	if (data->time_must_eat != - 1)
 	{
 		pthread_create(&supervisor, NULL, supervise_num_of_meal, data);
 		pthread_detach(supervisor);
@@ -44,11 +44,9 @@ static void	philos_join_free(t_data *data)
 		pthread_join(data->philos[i].life, NULL);
 		pthread_mutex_destroy(&data->philos[i++].check_philo);
 	}
-	free(data->philos);
 	i = 0;
 	while (i < data->number_of_philos)
 		pthread_mutex_destroy(&data->forks[i++]);
-	free(data->forks);
 }
 
 int	main(int argc, char **argv)
@@ -58,9 +56,9 @@ int	main(int argc, char **argv)
 	memset(&data, 0, sizeof(data));
 	if (parse_args_init(&data, argc, argv))
 		return (1);
-	if (init_philos(&data))
-		return (1);
 	philos_creation(&data);
 	philos_join_free(&data);
 	return (0);
 }
+
+//printf("**%p**\ndata->philos[%d]\n%d\n", &supervisor, i, data->philos[i].philo_id);
