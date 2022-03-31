@@ -6,7 +6,7 @@
 #    By: rburri <rburri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/08 10:48:44 by rburri            #+#    #+#              #
-#    Updated: 2022/03/31 06:17:15 by rburri           ###   ########.fr        #
+#    Updated: 2022/03/31 08:40:34 by rburri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SOURCE =  	main.c\
 			init.c\
 			acts.c\
 			supervise.c\
+			time.c\
 			
 		
 		

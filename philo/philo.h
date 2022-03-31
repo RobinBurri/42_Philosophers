@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:22:59 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/31 06:17:15 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/31 09:11:52 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ typedef struct s_philo
 	pthread_t		life;
 	int				num_of_meal;
 	long long		time_last_meal;
-	struct s_data	*data;
+	struct s_d		*d;
 }				t_philo;
 
-typedef struct s_data
+typedef struct s_d
 {
 	pthread_mutex_t	forks[250];
 	t_philo			philos[250];
@@ -58,17 +58,19 @@ typedef struct s_data
 }				t_data;
 
 //UTILS
-long long	get_time(void);
 int			err_msg(char *s);
 int			ft_strlen(char *s);
 int			ft_atoi(char *s);
 void		print_msg(t_philo *philo, char *str);
 // INIT
-int			parse_args_init(t_data *data, int argc, char **argv);
-int			init_mutex(t_data *data);
+int			parse_args_init(t_data *d, int argc, char **argv);
+int			init_mutex(t_data *d);
 //Threads function
 void		*acts(void *philo);
 void		*supervise(void *arg);
 void		*supervise_num_of_meal(void *arg);
+//TIME
+long long	get_time(void);
+void		ft_usleep(int ms);
 
 #endif
