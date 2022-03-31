@@ -67,7 +67,7 @@ void	*acts(void *arg)
 	if (philo->data->number_of_philos == 1)
 		usleep(philo->data->time_to_die * 1000);
 	else if (philo->philo_id % 2 == 0)
-		usleep(philo->data->time_to_eat * 100);
+		usleep(philo->data->time_to_eat * 10);
 	while (!philo->data->die && philo->data->all_have_eaten != 1)
 	{
 		taking_up_forks(philo);
