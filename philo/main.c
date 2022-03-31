@@ -53,8 +53,9 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	memset(&data, 0, sizeof(data));
 	if (parse_args_init(&data, argc, argv))
+		return (1);
+	if (init_mutex(&data))
 		return (1);
 	philos_creation(&data);
 	philos_join(&data);

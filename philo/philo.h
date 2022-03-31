@@ -30,8 +30,8 @@ time_to_die time_to_eat time_to_sleep [time_must_eat]\n"
 
 typedef struct s_philo
 {
-	pthread_mutex_t	*fork_left;
-	pthread_mutex_t	*fork_right;
+	int				fork_left;
+	int				fork_right;
 	pthread_mutex_t	check_meals;
 	int				philo_id;
 	pthread_t		life;

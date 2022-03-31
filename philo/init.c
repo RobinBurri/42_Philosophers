@@ -49,12 +49,8 @@ static void	init_philos_forks(t_data *data)
 	{
 		data->philos[i].philo_id = i;
 		data->philos[i].num_of_meal = 0;
-		if (i == 0)
-			data->philos[i].fork_left = \
-				&data->forks[data->number_of_philos - 1];
-		else
-			data->philos[i].fork_left = &data->forks[i - 1];
-		data->philos[i].fork_right = &data->forks[i];
+		data->philos[i].fork_left = i;
+		data->philos[i].fork_right = (i + 1) % data->number_of_philos;
 		data->philos[i].data = data;
 		i++;
 	}
@@ -77,12 +73,15 @@ int	parse_args_init(t_data *data, int argc, char **argv)
 	{
 		data->time_must_eat = ft_atoi(argv[5]);
 		data->all_have_eaten = 0;
+		data->finish_eaten = 0;
 		if (data->time_must_eat <= 0)
 			return (err_msg(MEAL_ERR));
 	}
 	else
+	{
 		data->time_must_eat = - 1;
 		data->all_have_eaten = - 1;
+	}
 	init_philos_forks(data);
 	return (0);
 }

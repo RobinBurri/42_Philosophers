@@ -17,11 +17,11 @@ void	*supervise_num_of_meal(void *arg)
 	t_data	*data;
 
 	data = (t_data *)arg;
-	while (!data->die)
+	while (!data->die && data->all_have_eaten != 1)
 	{
 		if (data->finish_eaten == data->number_of_philos)
 			data->all_have_eaten = 1;
-		usleep(500);
+		usleep(50000);
 	}
 	return (NULL);
 }
@@ -33,17 +33,17 @@ void	*supervise(void *arg)
 	long long	diff;
 
 	philo = (t_philo *)arg;
-	while (!philo->data->die)
+	while (!philo->data->die && philo->data->all_have_eaten != 1)
 	{
 		now = get_time();
 		diff = now - philo->time_last_meal;
 		if (diff >= philo->data->time_to_die && philo->data->die == 0)
 		{
 			pthread_mutex_lock(&philo->data->check_if_dead);
-			printf("%lld\t %d\t died\n", now - philo->data->time_of_creation, \
-				philo->philo_id);
 			philo->data->die = 1;
 			pthread_mutex_unlock(&philo->data->check_if_dead);
+			printf("%lld\t %d\t died\n", now - philo->data->time_of_creation, \
+				philo->philo_id);
 		}
 	}
 	return (NULL);
