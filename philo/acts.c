@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   activities.c                                       :+:      :+:    :+:   */
+/*   acts.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 10:58:23 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/30 18:47:10 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/31 06:13:17 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_sleep(t_philo *philo)
 	}
 }
 
-static void taking_up_forks(t_philo *philo)
+static void	taking_up_forks(t_philo *philo)
 {
 	if (!philo->data->die && philo->data->all_have_eaten != 1)
 	{
@@ -59,7 +59,7 @@ static void	eat(t_philo *philo)
 	}
 }
 
-void	*activities(void *arg)
+void	*acts(void *arg)
 {
 	t_philo	*philo;
 

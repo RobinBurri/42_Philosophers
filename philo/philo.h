@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:22:59 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/30 18:48:57 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/31 06:17:15 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # define ARG_ERR "Error: numbers of arguments\nUsage: ./philo num_of_philo \
 time_to_die time_to_eat time_to_sleep [time_must_eat]\n"
 # define NUM_ERR "Error: some args are not numbers\n"
-# define PHILO_ERR "Some args are incorrect: only positive numbers and max philosopher = 250\n"
+# define PHILO_ERR "Some args are incorrect: only positive \
+numbers and max philosopher = 250\n"
 # define MEAL_ERR "Number of Meals must be > 0\n"
 # define MUTEX_ERR "Error init mutex\n"
 
@@ -66,37 +67,8 @@ void		print_msg(t_philo *philo, char *str);
 int			parse_args_init(t_data *data, int argc, char **argv);
 int			init_mutex(t_data *data);
 //Threads function
-void		*activities(void *philo);
+void		*acts(void *philo);
 void		*supervise(void *arg);
 void		*supervise_num_of_meal(void *arg);
 
 #endif
-
-/*
-memset, printf, malloc, free, write,
-usleep, gettimeofday, pthread_create,
-pthread_detach, pthread_join, pthread_mutex_init,
-pthread_mutex_destroy, pthread_mutex_lock,
-pthread_mutex_unlock
-*/
-
-//Arguments:
-/*
-num of philos
-time to die
-time to eat
-time to sleep
-(time must eat)
-*/
-
-/*
-TODO
-- Die return ? especially when only  one philo
-- How a philo knows when he can try to take forks?
--forks not ok, how init them?
-*/
-
-// mutex_init
-// mutex_destroy
-// mutex_lock
-// mutex_unlock

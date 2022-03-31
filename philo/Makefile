@@ -6,7 +6,7 @@
 #    By: rburri <rburri@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/08 10:48:44 by rburri            #+#    #+#              #
-#    Updated: 2022/03/28 09:40:41 by rburri           ###   ########.fr        #
+#    Updated: 2022/03/31 06:17:15 by rburri           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIB = -lpthread
 SOURCE =  	main.c\
 			utils.c\
 			init.c\
-			activities.c\
+			acts.c\
 			supervise.c\
 			
 		

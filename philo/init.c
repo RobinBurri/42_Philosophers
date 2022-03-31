@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:44:47 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/30 18:30:52 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/31 06:21:44 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,13 @@ static void	init_philos_forks(t_data *data)
 
 int	parse_args_init(t_data *data, int argc, char **argv)
 {
-	if (argc < 5 || argc > 6)
-		return (err_msg(ARG_ERR));
 	if (check_entries(argc, argv))
 		return (err_msg(NUM_ERR));
 	data->number_of_philos = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	if (data->number_of_philos > 250 || data->time_to_die < 0 ||\
+	if (data->number_of_philos > 250 || data->time_to_die < 0 || \
 		data->time_to_eat < 0 || data->time_to_sleep < 0)
 		return (err_msg(PHILO_ERR));
 	if (argc == 6)
@@ -79,8 +77,8 @@ int	parse_args_init(t_data *data, int argc, char **argv)
 	}
 	else
 	{
-		data->time_must_eat = - 1;
-		data->all_have_eaten = - 1;
+		data->time_must_eat = -1;
+		data->all_have_eaten = -1;
 	}
 	init_philos_forks(data);
 	return (0);
@@ -100,6 +98,6 @@ int	init_mutex(t_data *data)
 		i++;
 	}
 	if (pthread_mutex_init(&data->check_if_dead, NULL))
-			return (err_msg(MUTEX_ERR));
-		return (0);
+		return (err_msg(MUTEX_ERR));
+	return (0);
 }

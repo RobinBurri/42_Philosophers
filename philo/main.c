@@ -6,7 +6,7 @@
 /*   By: rburri <rburri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:49:50 by rburri            #+#    #+#             */
-/*   Updated: 2022/03/30 16:07:11 by rburri           ###   ########.fr       */
+/*   Updated: 2022/03/31 06:22:20 by rburri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static void	philos_creation(t_data *data)
 	while (i < data->number_of_philos)
 	{
 		data->philos[i].time_last_meal = data->time_of_creation;
-		pthread_create(&data->philos[i].life, NULL, activities, &data->philos[i]);
+		pthread_create(&data->philos[i].life, NULL, acts, &data->philos[i]);
 		pthread_create(&supervisor, NULL, supervise, &data->philos[i]);
 		pthread_detach(supervisor);
 		i++;
 	}
-	if (data->time_must_eat != - 1)
+	if (data->time_must_eat != -1)
 	{
 		pthread_create(&supervisor, NULL, supervise_num_of_meal, data);
 		pthread_detach(supervisor);
@@ -53,6 +53,8 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	if (argc < 5 || argc > 6)
+		return (err_msg(ARG_ERR));
 	if (parse_args_init(&data, argc, argv))
 		return (1);
 	if (init_mutex(&data))
@@ -61,5 +63,3 @@ int	main(int argc, char **argv)
 	philos_join(&data);
 	return (0);
 }
-
-//printf("**%p**\ndata->philos[%d]\n%d\n", &supervisor, i, data->philos[i].philo_id);
